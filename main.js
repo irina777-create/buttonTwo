@@ -1,11 +1,10 @@
-const btnGetLink = document.getElementById('button1');
-const btnGoToLink = document.getElementById('button2');
+const btnGetLink = document.querySelector('button1');
+const btnGoToLink = document.querySelector('button2');
 let link;
 let linkArr;
 let stringLink;
 
 btnGetLink.onclick = function() {
-    link = prompt("Введите сылку");
     linkArr = link.split("");
     let arrText = [];
     const checkHttp = ['h','t','t','p'];
@@ -17,16 +16,21 @@ btnGetLink.onclick = function() {
 
     for(let i = 0; i < arrText.length; i++) {
         if(arrText[i] === checkHttps[i] || arrText[i] === checkHttp[i]) {
-            continue
-        } else {
             linkArr.unshift('h','t','t','p','s',':','/','/');
-            break
+        } else {
+            alert('Це не htpps протокол')
+        }
+
+    }
+    for(let i = 0; i < arrText.length; i++) {
+        if (arrText[i] === checkHttp[i] || arrText[i] === checkHttps[i]) {
+            linkArr.unshift('h', 't', 't', 'p', ':', '/', '/');
+        } else{
+        alert('Це не htpp протокол')
         }
     }
 
-    stringLink = linkArr.join("");
-    console.log(stringLink);
-}
+    }
 
-btnGoToLink.onclick = function() {
-    location.href = stringLink;
+
+
